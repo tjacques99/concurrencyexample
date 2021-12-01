@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    <artifactId>concurrencyexample</artifactId>
+    <groupId>com.mycompany</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+    <groupId>com.mycompany</groupId>
+    <artifactId>concurrency1</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>2.0.1</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+		<dependency>
+		    <groupId>javax.ws.rs</groupId>
+		    <artifactId>javax.ws.rs-api</artifactId>
+		    <version>2.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.wildfly.bom/wildfly-jakartaee8-with-tools-builder -->
+		<dependency>
+		    <groupId>org.wildfly.bom</groupId>
+		    <artifactId>wildfly-jakartaee8-with-tools-builder</artifactId>
+		    <version>24.0.1.Final</version>
+		    <type>pom</type>
+		</dependency>
+    </dependencies>
+    <build>
+        <finalName>concurrency1</finalName>
+        <pluginManagement>
+	      <plugins>
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-ejb-plugin</artifactId>
+	          <version>3.1.0</version>
+	          <configuration>
+	            <ejbVersion>3.2</ejbVersion>
+	          </configuration>
+	        </plugin>
+	        <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven.plugin}</version>
+            </plugin>
+	      </plugins>
+	    </pluginManagement>
+    </build>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
+    </properties>
+</project>
