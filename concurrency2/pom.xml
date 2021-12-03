@@ -6,10 +6,8 @@
     <groupId>com.mycompany</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-    <groupId>com.mycompany</groupId>
     <artifactId>concurrency2</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>ejb</packaging>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -47,13 +45,14 @@
 	          <version>3.1.0</version>
 	          <configuration>
 	            <ejbVersion>3.2</ejbVersion>
+	            <generateClient>true</generateClient>
 	          </configuration>
 	        </plugin>
 	        <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
-            </plugin>
+            </plugin> 
 	      </plugins>
 	      
 	    </pluginManagement>

@@ -6,10 +6,8 @@
     <groupId>com.mycompany</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-    <groupId>com.mycompany</groupId>
     <artifactId>Weatherman</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>ear</packaging>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -32,13 +30,53 @@
 		    <type>pom</type>
 		    <scope>provided</scope>
 		</dependency>
+		<dependency>
+	      <groupId>com.mycompany</groupId>
+	      <artifactId>concurrency1</artifactId>
+	      <version>0.0.1-SNAPSHOT</version>
+	      <type>ejb-client</type>
+	    </dependency>
+	    <dependency>
+	      <groupId>com.mycompany</groupId>
+	      <artifactId>concurrency2</artifactId>
+	      <version>0.0.1-SNAPSHOT</version>
+	      <type>ejb-client</type>
+	    </dependency>
     </dependencies>
     <build>
         <finalName>Weatherman</finalName>
+	    <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-ear-plugin</artifactId>
+	        <version>3.2.0</version>	        
+	      </plugin>
+	      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <version>3.3.2</version>
+			</plugin>
+	      <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-ejb-plugin</artifactId>
+	          <version>3.1.0</version>
+	          <configuration>
+	            <ejbVersion>3.2</ejbVersion>
+	            <generateClient>true</generateClient>
+	          </configuration>
+	        </plugin>
+	        <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven.plugin}</version>
+            </plugin>
+	    </plugins>
     </build>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
     </properties>
 </project>

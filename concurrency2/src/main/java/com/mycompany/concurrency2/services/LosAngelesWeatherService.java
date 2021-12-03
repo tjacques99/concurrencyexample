@@ -4,14 +4,12 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import javax.annotation.Resource;
-import javax.ejb.Remote;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
 
 @Stateless
-@Remote(LosAngelesWeatherService.class)
-public class LosAngelesWeatherService {
+public class LosAngelesWeatherService implements LosAngelesWeather {
 	@Resource
 	private SessionContext context;
 	
