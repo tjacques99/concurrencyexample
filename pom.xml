@@ -18,11 +18,9 @@
   <modules>
     <module>concurrency1</module>
     <module>concurrency2</module>
-    <module>weatherservice</module>
     <module>Weatherman</module>
     <module>weatherserviceear</module>
   </modules>
-  
   <build>
   	<pluginManagement>
   		<plugins>

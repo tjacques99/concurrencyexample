@@ -30,12 +30,6 @@
 	    </dependency>
 	    <dependency>
 	      <groupId>${project.parent.groupId}</groupId>
-	      <artifactId>weatherservice</artifactId>
-	      <version>${project.parent.version}</version>
-	      <type>jar</type>
-	    </dependency>
-	    <dependency>
-	      <groupId>${project.parent.groupId}</groupId>
 	      <artifactId>weatherman</artifactId>
 	      <version>${project.parent.version}</version>
 	      <type>war</type>
@@ -50,10 +44,6 @@
 		        <version>3.2.0</version>
 		        <configuration>
 		        	<modules>
-		        		<jarModule>
-		        			<groupId>${project.parent.groupId}</groupId>
-						      <artifactId>weatherservice</artifactId>
-		        		</jarModule>
 		        		<ejbModule>
 		        			<groupId>${project.parent.groupId}</groupId>
 					      	<artifactId>concurrency1</artifactId>
