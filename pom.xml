@@ -11,5 +11,23 @@
     <module>concurrency1</module>
     <module>concurrency2</module>
     <module>Weatherman</module>
+    <module>weatherserviceear</module>
   </modules>
+  <build>
+  		<pluginManagement>
+	      <plugins>
+	        <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven.plugin}</version>
+            </plugin> 
+	      </plugins>   
+	    </pluginManagement>
+  </build>
+  <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
+    </properties>
 </project>

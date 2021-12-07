@@ -7,7 +7,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
     <artifactId>Weatherman</artifactId>
-    <packaging>ear</packaging>
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -15,36 +15,10 @@
             <version>8.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse.microprofile</groupId>
-            <artifactId>microprofile</artifactId>
-            <version>2.0.1</version>
-            <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.wildfly/wildfly-ejb-client-bom -->
-		<dependency>
-		    <groupId>org.wildfly</groupId>
-		    <artifactId>wildfly-ejb-client-bom</artifactId>
-		    <version>24.0.1.Final</version>
-		    <type>pom</type>
-		    <scope>provided</scope>
-		</dependency>
-		<dependency>
-	      <groupId>com.mycompany</groupId>
-	      <artifactId>concurrency1</artifactId>
-	      <version>0.0.1-SNAPSHOT</version>
-	      <type>ejb-client</type>
-	    </dependency>
-	    <dependency>
-	      <groupId>com.mycompany</groupId>
-	      <artifactId>concurrency2</artifactId>
-	      <version>0.0.1-SNAPSHOT</version>
-	      <type>ejb-client</type>
-	    </dependency>
     </dependencies>
     <build>
-        <finalName>Weatherman</finalName>
+        <finalName>weatherman</finalName>
 	    <plugins>
 	      <plugin>
 	        <groupId>org.apache.maven.plugins</groupId>
@@ -66,17 +40,6 @@
 	            <generateClient>true</generateClient>
 	          </configuration>
 	        </plugin>
-	        <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>${version.wildfly.maven.plugin}</version>
-            </plugin>
 	    </plugins>
     </build>
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-        <version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
-    </properties>
 </project>
