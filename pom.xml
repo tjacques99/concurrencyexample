@@ -7,27 +7,38 @@
   <packaging>pom</packaging>
   <name>Concurrency Example</name>
   <description>Root project for currency example</description>
+  
+   <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
+    </properties>
+  
   <modules>
     <module>concurrency1</module>
     <module>concurrency2</module>
     <module>Weatherman</module>
     <module>weatherserviceear</module>
   </modules>
+  
+  <dependencies>
+	  <dependency>
+           <groupId>javax</groupId>
+           <artifactId>javaee-api</artifactId>
+           <version>8.0</version>
+           <scope>provided</scope>
+	  </dependency>
+  </dependencies>
   <build>
-  		<pluginManagement>
-	      <plugins>
-	        <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>${version.wildfly.maven.plugin}</version>
-            </plugin> 
-	      </plugins>   
-	    </pluginManagement>
+ 	<pluginManagement>
+      <plugins>
+        <plugin>
+               <groupId>org.wildfly.plugins</groupId>
+               <artifactId>wildfly-maven-plugin</artifactId>
+               <version>${version.wildfly.maven.plugin}</version>
+           </plugin> 
+      </plugins>   
+    </pluginManagement>
   </build>
-  <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-        <version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
-    </properties>
 </project>

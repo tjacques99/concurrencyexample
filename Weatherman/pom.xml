@@ -9,37 +9,34 @@
     <artifactId>Weatherman</artifactId>
     <packaging>war</packaging>
     <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>8.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.wildfly/wildfly-ejb-client-bom -->
+    	<dependency>
+		    <groupId>org.wildfly</groupId>
+		    <artifactId>wildfly-ejb-client-bom</artifactId>
+		    <version>24.0.1.Final</version>
+		    <type>pom</type>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+	      <groupId>${project.parent.groupId}</groupId>
+	      <artifactId>concurrency1</artifactId>
+	      <version>${project.parent.version}</version>
+	      <type>ejb-client</type>
+	    </dependency>
+	    <dependency>
+	      <groupId>${project.parent.groupId}</groupId>
+	      <artifactId>concurrency2</artifactId>
+	      <version>${project.parent.version}</version>
+	      <type>ejb-client</type>
+	    </dependency>
     </dependencies>
     <build>
         <finalName>weatherman</finalName>
 	    <plugins>
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-ear-plugin</artifactId>
-	        <version>3.2.0</version>	        
-	      </plugin>
-	      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-war-plugin</artifactId>
 			    <version>3.3.2</version>
 			</plugin>
-	      <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-ejb-plugin</artifactId>
-	          <version>3.1.0</version>
-	          <configuration>
-	            <ejbVersion>3.2</ejbVersion>
-	            <generateClient>true</generateClient>
-	          </configuration>
-	        </plugin>
 	    </plugins>
     </build>
 </project>

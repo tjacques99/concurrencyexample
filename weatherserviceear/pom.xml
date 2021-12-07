@@ -9,13 +9,7 @@
     <artifactId>weatherserviceear</artifactId>
     <packaging>ear</packaging>
     <dependencies>
-		<dependency>
-		    <groupId>org.wildfly</groupId>
-		    <artifactId>wildfly-ejb-client-bom</artifactId>
-		    <version>24.0.1.Final</version>
-		    <type>pom</type>
-		    <scope>provided</scope>
-		</dependency>
+    
 		<dependency>
 	      <groupId>${project.parent.groupId}</groupId>
 	      <artifactId>concurrency1</artifactId>
