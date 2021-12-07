@@ -1,12 +1,12 @@
 package com.mycompany.weatherman.api;
 
-import javax.ejb.EJB;
+
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import com.mycompany.concurrency2.services.LosAngelesWeatherService;
+import com.mycompany.weatherservice.WeatherService;
 
 import javax.ws.rs.GET;
 
@@ -17,12 +17,13 @@ import javax.ws.rs.GET;
 @Consumes("application/json")
 public class WeatherInLosAngeles {
 	
-	@EJB(name="ejb:/concurrency2/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeatherService")
-	LosAngelesWeatherService losAngelesWeatherService;
+	WeatherService weatherService = new WeatherService();
+	
 	
 	@GET
 	public String getWeather() {
-		return losAngelesWeatherService.getWeather();
+//		return "Sunny";
+		return weatherService.getLosAngelesWeather();
 		
 	}
 
