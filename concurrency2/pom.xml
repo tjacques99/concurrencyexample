@@ -40,6 +40,11 @@
 	          <configuration>
 	            <ejbVersion>3.2</ejbVersion>
 	            <generateClient>true</generateClient>
+	            <archive>
+		          <manifest>
+		            <addClasspath>true</addClasspath>
+		          </manifest>
+		        </archive>
 	          </configuration>
 	        </plugin>
 	      </plugins>
