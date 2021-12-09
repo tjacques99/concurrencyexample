@@ -9,10 +9,9 @@
   <description>Root project for currency example</description>
   
    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
   
   <modules>
@@ -33,6 +32,11 @@
   <build>
  	<pluginManagement>
       <plugins>
+      	 <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.8.1</version>
+      </plugin>
         <plugin>
                <groupId>org.wildfly.plugins</groupId>
                <artifactId>wildfly-maven-plugin</artifactId>
