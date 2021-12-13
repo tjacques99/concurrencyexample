@@ -14,9 +14,9 @@
 		    <artifactId>wildfly-ejb-client-bom</artifactId>
 		    <version>24.0.1.Final</version>
 		    <type>pom</type>
-		    <scope>provided</scope>
+		    <scope>compile</scope>
 		</dependency>
-<!--  		<dependency>
+  		<dependency>
 	      <groupId>${project.parent.groupId}</groupId>
 	      <artifactId>concurrency1</artifactId>
 	      <version>${project.parent.version}</version>
@@ -27,7 +27,7 @@
 	      <artifactId>concurrency2</artifactId>
 	      <version>${project.parent.version}</version>
 	      <type>ejb-client</type>
-	    </dependency>-->
+	    </dependency>
     </dependencies>
     <build>
         <finalName>weatherman</finalName>
