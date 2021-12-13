@@ -1,5 +1,6 @@
 package com.mycompany.concurrency1.services;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -24,29 +25,34 @@ public class NewYorkWeatherService implements NewYorkWeather {
 	
 	@Override
 	public String getWeather() {
-		Future<String> future = service.submit(()->{
-			//Thread.sleep(5000);
-			return "Snowing";
+		
+		Future<WeatherReport> future = service.submit(()->{
+			WeatherReport weatherReport = executeHttpRequestOnWeatherAPI();
+			return weatherReport;
 		});
 		
-		String weather = "";
+		WeatherReport weatherReport = new WeatherReport("No weather report");
+		
 		try {
-			weather = future.get();
+			weatherReport = future.get();
 		} catch (InterruptedException | ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return weather;
+		return weatherReport.toString();
 	}
 	
-	private void executeHttpRequestOnWeatherAPI() {
+	private WeatherReport executeHttpRequestOnWeatherAPI() throws IOException, InterruptedException {
 	HttpClient client = HttpClient.newHttpClient();
 	
 	 HttpRequest request = HttpRequest.newBuilder(
 			 URI.create("http://api.weatherapi.com/v1/current.json?key=89b9857f4bab4782b47190955211312&q=10001&aqi=no"))
 	   .header("accept", "application/json")
 	   .build();
+	 
+	 WeatherReport weatherReport = (WeatherReport) client.send(request, new JsonBodyHandler<>(WeatherReport.class));
+	 return weatherReport;
 }
  
 
