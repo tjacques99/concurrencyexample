@@ -1,5 +1,7 @@
 package com.mycompany.concurrency2.services;
 
+import java.net.URI;
+import java.net.http.HttpClient;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -8,6 +10,7 @@ import javax.ejb.Remote;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
+
 
 @Stateless
 @Remote(LosAngelesWeather.class)
@@ -35,6 +38,5 @@ public class LosAngelesWeatherService implements LosAngelesWeather {
 		
 		return weather;
 	}
-
 }
 

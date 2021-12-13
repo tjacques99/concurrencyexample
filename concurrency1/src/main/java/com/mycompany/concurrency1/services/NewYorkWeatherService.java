@@ -1,5 +1,8 @@
 package com.mycompany.concurrency1.services;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -22,7 +25,7 @@ public class NewYorkWeatherService implements NewYorkWeather {
 	@Override
 	public String getWeather() {
 		Future<String> future = service.submit(()->{
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
 			return "Snowing";
 		});
 		
@@ -36,6 +39,16 @@ public class NewYorkWeatherService implements NewYorkWeather {
 		
 		return weather;
 	}
+	
+	private void executeHttpRequestOnWeatherAPI() {
+	HttpClient client = HttpClient.newHttpClient();
+	
+	 HttpRequest request = HttpRequest.newBuilder(
+			 URI.create("http://api.weatherapi.com/v1/current.json?key=89b9857f4bab4782b47190955211312&q=10001&aqi=no"))
+	   .header("accept", "application/json")
+	   .build();
+}
+ 
 
 }
 
