@@ -45,6 +45,7 @@ public class WeatherInLosAngeles {
 		final Context context = new InitialContext(jndiProperties);
 		
 		return (LosAngelesWeather) context.lookup("java:global/concurrency2/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeather");
+		//return (LosAngelesWeather) context.lookup("java:global/weatherserviceear/com.mycompany-weatherman-0.0.1-SNAPSHOT/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeather");
 	}
 
 }

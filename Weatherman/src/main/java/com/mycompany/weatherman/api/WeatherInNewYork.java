@@ -45,6 +45,7 @@ public class WeatherInNewYork {
 		final Context context = new InitialContext(jndiProperties);
 		
 		return (NewYorkWeather) context.lookup("java:global/concurrency1/NewYorkWeatherService!com.mycompany.concurrency1.services.NewYorkWeather");
+		//return (NewYorkWeather) context.lookup("java:global/weatherserviceear/com.mycompany-weatherman-0.0.1-SNAPSHOT/NewYorkWeatherService!com.mycompany.concurrency1.services.NewYorkWeather");
 	}
 
 }

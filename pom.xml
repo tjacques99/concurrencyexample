@@ -18,7 +18,7 @@
     <module>concurrency1</module>
     <module>concurrency2</module>
     <module>Weatherman</module>
-    <module>weatherserviceear</module>
+    <!--   <module>weatherserviceear</module> -->
   </modules>
   
   <dependencies>
