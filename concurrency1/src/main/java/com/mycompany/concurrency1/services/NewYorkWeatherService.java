@@ -31,7 +31,7 @@ public class NewYorkWeatherService implements NewYorkWeather {
 			return weatherReport;
 		});
 		
-		WeatherReport weatherReport = new WeatherReport("No weather report");
+		WeatherReport weatherReport = new WeatherReport();
 		
 		try {
 			weatherReport = future.get();
