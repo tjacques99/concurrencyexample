@@ -22,21 +22,17 @@ import javax.ws.rs.GET;
 @Consumes("application/json")
 public class WeatherInLosAngeles {
 	
-	//@EJB(name="ejb:weatherserviceear/com.mycompany-weatherman-0.0.1-SNAPSHOT/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeather")
+	private static final String jndiGlobalString = "java:global/concurrency2/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeather";
+	private static final String jndiEjbString = "ejb:/weatherman/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeather";
+	
+	@EJB(name=jndiEjbString)
 	LosAngelesWeather losAngelesWeather;
 	
 	@GET
 	public String getWeather() {
-		try {
-			 losAngelesWeather = lookupLosAngelesWeather();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		//losAngelesWeather = lookupLosAngelesWeather();
 		return losAngelesWeather.getWeather();
-		
-//		return "Sunny";
-		
 	}
 	
 	private static LosAngelesWeather lookupLosAngelesWeather() throws NamingException {
@@ -44,7 +40,7 @@ public class WeatherInLosAngeles {
 		jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 		final Context context = new InitialContext(jndiProperties);
 		
-		return (LosAngelesWeather) context.lookup("java:global/concurrency2/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeather");
+		return (LosAngelesWeather) context.lookup(jndiGlobalString);
 		//return (LosAngelesWeather) context.lookup("java:global/weatherserviceear/com.mycompany-weatherman-0.0.1-SNAPSHOT/LosAngelesWeatherService!com.mycompany.concurrency2.services.LosAngelesWeather");
 	}
 
