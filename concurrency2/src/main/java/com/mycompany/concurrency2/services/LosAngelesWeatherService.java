@@ -6,6 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -29,20 +30,38 @@ public class LosAngelesWeatherService implements LosAngelesWeather {
 	
 	@Override
 	public String getWeather() {
-		Future<String> future = service.submit(()->{
-			String weatherReport = executeHttpRequestOnWeatherAPI();
-			return weatherReport;
-		});
 		
-		String weather = "";
+		CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> weatherReport());
+		
+		while (!completableFuture.isDone()) {
+		    System.out.println("LosAngeles CompletableFuture is not finished yet...");
+		}
+		String weatherReport = "";
 		try {
-			weather = future.get();
-		} catch (InterruptedException | ExecutionException e) {
+			weatherReport = completableFuture.get();
+		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
-		return weather;
+		System.out.println(weatherReport);	
+//		Future<String> future = service.submit(()->{
+//			String weatherReport = executeHttpRequestOnWeatherAPI();
+//			return weatherReport;
+//		});
+//		
+//		String weather = "";
+//		try {
+//			weather = future.get();
+//		} catch (InterruptedException | ExecutionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		return weatherReport;
 	}
 	
 	private String executeHttpRequestOnWeatherAPI() throws IOException, InterruptedException {
@@ -60,6 +79,20 @@ public class LosAngelesWeatherService implements LosAngelesWeather {
 //		 String weatherSummary = jsonNode.get("current").get("condition").get("text").asText();
 
 		 return jsonNode.toPrettyString();
+	}
+	
+	private String weatherReport() {
+		String weatherReport = "";
+		try {
+			weatherReport = executeHttpRequestOnWeatherAPI();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return weatherReport;
 	}
 }
 

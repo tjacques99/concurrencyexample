@@ -6,8 +6,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.function.Function;
 
 import javax.annotation.Resource;
 import javax.ejb.Remote;
@@ -31,19 +33,37 @@ public class NewYorkWeatherService implements NewYorkWeather {
 	@Override
 	public String getWeather() {
 		
-		Future<String> future = service.submit(()->{
-			String weatherReport = executeHttpRequestOnWeatherAPI();
-			return weatherReport;
-		});
+		CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> weatherReport());
 		
-		String weatherReport = "";
-		
-		try {
-			weatherReport = future.get();
-		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while (!completableFuture.isDone()) {
+		    System.out.println("New York CompletableFuture is not finished yet...");
 		}
+		String weatherReport = "";
+		try {
+			weatherReport = completableFuture.get();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println(weatherReport);
+
+//		Future<String> future = service.submit(()->{
+//			String weatherReport = executeHttpRequestOnWeatherAPI();
+//			return weatherReport;
+//		});
+//		
+//		String weatherReport = "";
+//		
+//		try {
+//			weatherReport = future.get();
+//		} catch (InterruptedException | ExecutionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		return weatherReport;
 	}
@@ -65,6 +85,18 @@ public class NewYorkWeatherService implements NewYorkWeather {
 		 return jsonNode.toPrettyString();
 	}
  
-
+	private String weatherReport() {
+		String weatherReport = "";
+		try {
+			weatherReport = executeHttpRequestOnWeatherAPI();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return weatherReport;
+	}
 }
 
