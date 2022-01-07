@@ -18,7 +18,6 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
 
-
 @Stateless
 @Remote(LosAngelesWeather.class)
 public class LosAngelesWeatherService implements LosAngelesWeather {
@@ -30,36 +29,22 @@ public class LosAngelesWeatherService implements LosAngelesWeather {
 	
 	@Override
 	public String getWeather() {
+			
+		Future<String> future = service.submit(()->{
+			String weatherReport = executeHttpRequestOnWeatherAPI();
+			return weatherReport;
+		});
 		
-		CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> weatherReport());
-		
-		while (!completableFuture.isDone()) {
-		    System.out.println("LosAngeles CompletableFuture is not finished yet...");
-		}
 		String weatherReport = "";
+		
 		try {
-			weatherReport = completableFuture.get();
-		} catch (InterruptedException e1) {
+			weatherReport = future.get();
+		} catch (InterruptedException | ExecutionException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
 		
-		System.out.println(weatherReport);	
-//		Future<String> future = service.submit(()->{
-//			String weatherReport = executeHttpRequestOnWeatherAPI();
-//			return weatherReport;
-//		});
-//		
-//		String weather = "";
-//		try {
-//			weather = future.get();
-//		} catch (InterruptedException | ExecutionException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		System.out.println(weatherReport);
 		
 		return weatherReport;
 	}
