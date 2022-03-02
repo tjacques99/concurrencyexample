@@ -29,6 +29,11 @@
 		    <version>2.0.0.Final</version>
 		    <scope>provided</scope>
 		</dependency>
+		<dependency>
+		    <groupId>com.rabbitmq</groupId>
+		    <artifactId>amqp-client</artifactId>
+		    <version>5.14.2</version>
+		</dependency>
     </dependencies>
     <build>
       <finalName>concurrency1</finalName>
